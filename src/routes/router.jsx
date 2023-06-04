@@ -8,6 +8,7 @@ import Main from "../layout/Main";
 import TaskList from "../Pages/TaskList/TaskList";
 import AddTask from "../Pages/AddTask/AddTask";
 import TaskManagement from "../Pages/TaskManagement/TaskManagement";
+import UpdateTask from "../Pages/TaskManagement/UpdateTask";
 
 
   const router = createBrowserRouter([
@@ -28,6 +29,11 @@ import TaskManagement from "../Pages/TaskManagement/TaskManagement";
         {
             path:'/manageTask',
             element:<TaskManagement></TaskManagement>
+        },
+        {
+            path:'/update/:id',
+            element:<UpdateTask></UpdateTask>,
+            loader:({params})=>fetch(`http://localhost:5000/updateTask/${params.id}`)
         }
        
        
