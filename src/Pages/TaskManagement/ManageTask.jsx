@@ -2,8 +2,10 @@ import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 
-const ManageTask = ({t,i}) => {
+
+const ManageTask = ({t,i,handleDelete}) => {
     const {title,description,status,_id}=t;
+  
     return (
         <>
         <tr>
@@ -16,7 +18,7 @@ const ManageTask = ({t,i}) => {
           Update
         </Button></Link>
         </td> 
-        <td > <Button variant="secondary" size="sm">
+        <td > <Button onClick={()=>handleDelete(_id)} variant="secondary" size="sm">
          Delete
         </Button></td> 
 

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import ManageTask from "./ManageTask";
 import { Table } from "react-bootstrap";
+import Swal from "sweetalert2";
 
 
 const TaskManagement = () => {
@@ -14,6 +15,28 @@ const TaskManagement = () => {
           setTask(data);
         });
     },[])
+    const handleDelete = (id) => {
+        const proceed = confirm("Are you sure ,you want to delete");
+        if (proceed) {
+          fetch(`http://localhost:5000/taskDelete/${id}`, {
+            method: "DELETE",
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data);
+              if (data.deletedCount > 0) {
+                Swal.fire({
+                  title: "success!",
+                  text: "Delete Succesfull",
+                  icon: "success",
+                  confirmButtonText: "Cool",
+                });
+                const remains = task.filter((t) => t._id !== id);
+                setTask(remains);
+              }
+            });
+        }
+      };
     return (
      <div className="text-center mt-3 mb-3 p-3">
            <Table responsive>
@@ -30,7 +53,7 @@ const TaskManagement = () => {
         <tbody>
         {
           task.map((t, i) => (
-              <ManageTask key={t._id} t={t} i={i}></ManageTask>
+              <ManageTask key={t._id} t={t} i={i} handleDelete={handleDelete}></ManageTask>
             ))
         }
         </tbody>
