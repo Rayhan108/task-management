@@ -67,7 +67,7 @@ const AddTask = () => {
         <Form.Control as="textarea" name="description" rows={3} />
       </Form.Group>
      <div className="text-center">
-     <Button variant="primary" size="lg">
+     <Button variant="primary" type="submit" size="lg">
         Add New Task
       </Button>
      </div>
