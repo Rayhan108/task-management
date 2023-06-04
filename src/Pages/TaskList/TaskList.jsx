@@ -7,7 +7,7 @@ const TaskList = () => {
     const [task,setTask]=useState([]);
 
     useEffect(()=>{
-        fetch("http://localhost:5000/task")
+        fetch("https://task-management-server-iota.vercel.app/task")
         .then((res) => res.json())
         .then((data) => {
           // console.log(data);

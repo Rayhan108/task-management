@@ -18,7 +18,7 @@ const UpdateTask = () => {
         const data={   
             status:status
         }
-        fetch(`http://localhost:5000/taskUpdate/${task._id}`, {
+        fetch(`https://task-management-server-iota.vercel.app/taskUpdate/${task._id}`, {
             method: "PATCH",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data),

@@ -16,7 +16,7 @@ const AddTask = () => {
             description:description
         }
         // console.log(task);
-        fetch("http://localhost:5000/post-task", {
+        fetch("https://task-management-server-iota.vercel.app/post-task", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(task),

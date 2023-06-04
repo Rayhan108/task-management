@@ -8,7 +8,7 @@ const TaskManagement = () => {
     const [task,setTask]=useState([]);
 
     useEffect(()=>{
-        fetch("http://localhost:5000/task")
+        fetch("https://task-management-server-iota.vercel.app/task")
         .then((res) => res.json())
         .then((data) => {
           // console.log(data);
@@ -18,7 +18,7 @@ const TaskManagement = () => {
     const handleDelete = (id) => {
         const proceed = confirm("Are you sure ,you want to delete");
         if (proceed) {
-          fetch(`http://localhost:5000/taskDelete/${id}`, {
+          fetch(`https://task-management-server-iota.vercel.app/taskDelete/${id}`, {
             method: "DELETE",
           })
             .then((res) => res.json())
