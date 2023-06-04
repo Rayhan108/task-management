@@ -1,4 +1,5 @@
 import { Button, Container, Form } from "react-bootstrap";
+import Swal from "sweetalert2";
 
 
 
@@ -9,7 +10,33 @@ const AddTask = () => {
         const title=form.title.value;
         const status = form.status.value;
         const description = form.description.value;
-        console.log(title,status,description);
+        const task={
+            title:title,
+            status:status,
+            description:description
+        }
+        // console.log(task);
+        fetch("http://localhost:5000/post-task", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(task),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+            
+                if(data.insertedId){
+                    Swal.fire({
+                        title: 'Task Added',
+                        showClass: {
+                          popup: 'animate__animated animate__fadeInDown'
+                        },
+                        hideClass: {
+                          popup: 'animate__animated animate__fadeOutUp'
+                        }
+                      })
+              
+        form.reset()
+            }});
     }
     return (
         <div className="bg-secondary">
